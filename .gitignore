@@ -1,0 +1,17 @@
+# Compiled binaries
+*.o
+*_debug.o
+*_asan.o
+*_ubsan.o
+*_sanitize.o
+
+# Executables
+ttdecomp
+ttdecomp.*
+
+# Editor backups
+*~
+*.bak
+
+# Build artifacts
+-lrat

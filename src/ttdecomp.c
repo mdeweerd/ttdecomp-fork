@@ -48,7 +48,7 @@ Additional permission under GNU GPL version 3 section 7 */
 #ifdef WIN32
 int _tmain(int argc, _TCHAR* argv[])
 #else
-int main (int argc, char** argv)
+int main (int argc, char* const argv[])
 #endif
 {
   unsigned char *in_buffer, *out_buffer;
@@ -88,7 +88,7 @@ int main (int argc, char** argv)
   in_buffer = (unsigned char *)malloc(in_buffer_size);
   if (in_buffer == NULL)
   {
-    fprintf(stderr, "ttdecomp: Unable to allocate buffer to read file %s; need %zd bytes\n",
+    fprintf(stderr, "ttdecomp: Unable to allocate buffer to read file %s; need %zu bytes\n",
       in_path, in_buffer_size);
     exit(1);
   }
@@ -118,12 +118,12 @@ int main (int argc, char** argv)
   exploded_size = out_buffer_size;
   if (!explode(in_buffer, n_bytes_read, out_buffer, &exploded_size))
   {
-    fprintf(stderr, "ttdecomp: Unable to decompress file %s\n", in_path);
+    fprintf(stderr, "ttdecomp: Unable to decompress file %s (incompatible TTComp format)\n", in_path);
     exit(1);
   }
   if (exploded_size > out_buffer_size)
   {
-    fprintf(stderr, "ttdecomp: Decompressed data is larger than allocated buffer: %d > %zd\n",
+    fprintf(stderr, "ttdecomp: Decompressed data is larger than allocated buffer: %u > %zu\n",
       exploded_size, out_buffer_size);
     exit(1);
 	}
